@@ -72,13 +72,15 @@
       display: inline-block;
     }
 
-    /* clickable pill only for CPA */
+    /* Only for clickable pill (CPA path) */
     .pill-link{
       text-decoration: none;
+      color: inherit;
       display: inline-flex;
     }
+
     .pill-link .pill:hover{
-      opacity: 0.85;
+      opacity: .85;
       cursor: pointer;
     }
 
@@ -255,10 +257,10 @@
   <div class="container">
 
     <div class="topline">
-      <!-- NOT CLICKABLE -->
+      <!-- NOT a button/link (stays normal) -->
       <div class="pill"><span class="dot"></span> Open to: Accounting Internship / Entry-Level (May 2026)</div>
 
-      <!-- CLICKABLE (CPA -> coursework.html) -->
+      <!-- CPA pill is clickable and goes to coursework.html -->
       <a class="pill-link" href="coursework.html">
         <div class="pill"><span class="dot"></span> CPA path: Lone Star coursework after graduation</div>
       </a>
@@ -279,7 +281,7 @@
           <a class="btn primary" href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
           <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="mailto:kbee0017@gmail.com">Email</a>
-          <!-- NEW Projects button -->
+          <!-- NEW Projects button next to Email -->
           <a class="btn" href="projects.html">Projects</a>
         </div>
       </div>
