@@ -72,16 +72,30 @@
       display: inline-block;
     }
 
-    /* Only for clickable pill (CPA path) */
-    .pill-link{
-      text-decoration: none;
-      color: inherit;
-      display: inline-flex;
+    /* --- CPA pill: make it look like a real clickable button --- */
+    .pill-cta{
+      text-decoration: none;           /* removes underline */
+      background: var(--accent);       /* filled button look */
+      color: #fff;
+      border-color: transparent;
+      box-shadow: 0 8px 18px rgba(0,0,0,.10);
+      transition: transform .06s ease, box-shadow .12s ease, background .12s ease;
     }
 
-    .pill-link .pill:hover{
-      opacity: .85;
+    .pill-cta .dot{
+      background: #fff;                /* dot contrasts on filled background */
+    }
+
+    .pill-cta:hover{
+      background: #761830;
+      transform: translateY(-1px);
+      box-shadow: 0 12px 22px rgba(0,0,0,.12);
       cursor: pointer;
+    }
+
+    .pill-cta:focus-visible{
+      outline: 3px solid rgba(139,29,58,.35);
+      outline-offset: 3px;
     }
 
     header.hero {
@@ -257,12 +271,13 @@
   <div class="container">
 
     <div class="topline">
-      <!-- NOT a button/link (stays normal) -->
+      <!-- NOT clickable -->
       <div class="pill"><span class="dot"></span> Open to: Accounting Internship / Entry-Level (May 2026)</div>
 
-      <!-- CPA pill is clickable and goes to coursework.html -->
-      <a class="pill-link" href="coursework.html">
-        <div class="pill"><span class="dot"></span> CPA path: Lone Star coursework after graduation</div>
+      <!-- Clickable CPA button -->
+      <a class="pill pill-cta" href="coursework.html">
+        <span class="dot"></span>
+        CPA path: Lone Star coursework after graduation →
       </a>
     </div>
 
@@ -281,7 +296,6 @@
           <a class="btn primary" href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
           <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="mailto:kbee0017@gmail.com">Email</a>
-          <!-- NEW Projects button next to Email -->
           <a class="btn" href="projects.html">Projects</a>
         </div>
       </div>
