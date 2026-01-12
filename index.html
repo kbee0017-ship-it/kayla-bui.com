@@ -64,6 +64,12 @@
       font-weight: 600;
       font-size: 13px;
       border: 1px solid rgba(139, 29, 58, .20);
+      text-decoration: none;
+    }
+
+    .pill:hover {
+      opacity: 0.85;
+      cursor: pointer;
     }
 
     .pill .dot{
@@ -72,15 +78,6 @@
       border-radius: 50%;
       background: var(--accent);
       display: inline-block;
-    }
-
-    .pill-link {
-      text-decoration: none;
-    }
-
-    .pill:hover {
-      opacity: 0.85;
-      cursor: pointer;
     }
 
     header.hero {
@@ -149,52 +146,6 @@
       background: #761830;
     }
 
-    section { margin-top: 22px; }
-
-    h2 {
-      margin: 0 0 10px;
-      font-size: 18px;
-      letter-spacing: -0.01em;
-      display: inline-flex;
-      gap: 10px;
-      align-items: center;
-    }
-
-    h2::before{
-      content: "";
-      width: 12px;
-      height: 12px;
-      border-radius: 4px;
-      background: var(--accent);
-      display: inline-block;
-    }
-
-    p { margin: 10px 0; }
-
-    .grid { display: grid; gap: 14px; }
-    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
-
-    .card {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
-    }
-
-    .meta {
-      color: var(--muted);
-      font-size: 13px;
-      margin-bottom: 10px;
-    }
-
-    ul.clean {
-      margin: 10px 0 0;
-      padding-left: 18px;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
     footer {
       margin-top: 24px;
       text-align: center;
@@ -208,13 +159,6 @@
       margin: 0 auto;
       text-align: center;
     }
-
-    @media (max-width: 860px){
-      header.hero { grid-template-columns: 1fr; }
-      .grid.two, .grid.three { grid-template-columns: 1fr; }
-      h1 { font-size: 30px; }
-      .container { margin: 18px 14px; padding: 18px; }
-    }
   </style>
 </head>
 
@@ -222,20 +166,21 @@
 
   <div class="container">
 
+    <!-- TOP PILLS -->
     <div class="topline">
       <div class="pill">
         <span class="dot"></span>
         Open to: Accounting Internship / Entry-Level (May 2026)
       </div>
 
-      <a href="coursework.html" class="pill-link">
-        <div class="pill">
-          <span class="dot"></span>
-          CPA path: Lone Star coursework after graduation
-        </div>
+      <!-- CPA pill now links to coursework.html -->
+      <a class="pill" href="coursework.html">
+        <span class="dot"></span>
+        CPA path: Lone Star coursework after graduation
       </a>
     </div>
 
+    <!-- HERO -->
     <header class="hero">
       <img src="2025-2026 Head Shot.jpg" alt="Headshot of Kayla Bui">
 
@@ -246,20 +191,22 @@
           Interested in structured work, reconciliations, and improving reporting workflows—especially with Excel.
         </p>
 
+        <!-- BUTTONS UNDER NAME -->
         <div class="buttons">
-          <a class="btn primary" href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank">Resume (PDF)</a>
-          <a class="btn" href="coursework.html">Coursework</a>
-          <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank">LinkedIn</a>
+          <a class="btn primary" href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+          <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="mailto:kbee0017@gmail.com">Email</a>
+          <!-- NEW PROJECTS BUTTON -->
+          <a class="btn" href="projects.html">Projects</a>
         </div>
       </div>
     </header>
 
-    <footer>
-      <div class="footer-wrap">© 2026 Kayla Bui • Built with GitHub Pages</div>
-    </footer>
-
   </div>
+
+  <footer>
+    <div class="footer-wrap">© 2026 Kayla Bui • Built with GitHub Pages</div>
+  </footer>
 
 </body>
 </html>
