@@ -67,9 +67,20 @@
     }
 
     .pill .dot{
-      width: 8px; height: 8px; border-radius: 50%;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
       background: var(--accent);
       display: inline-block;
+    }
+
+    .pill-link {
+      text-decoration: none;
+    }
+
+    .pill:hover {
+      opacity: 0.85;
+      cursor: pointer;
     }
 
     header.hero {
@@ -160,9 +171,6 @@
 
     p { margin: 10px 0; }
 
-    a { color: var(--accent); }
-    a:hover { opacity: .9; }
-
     .grid { display: grid; gap: 14px; }
     .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -172,12 +180,6 @@
       border: 1px solid var(--border);
       border-radius: var(--radius);
       padding: 16px;
-    }
-
-    .card h3 {
-      margin: 0 0 6px;
-      font-size: 15px;
-      letter-spacing: -0.01em;
     }
 
     .meta {
@@ -191,30 +193,6 @@
       padding-left: 18px;
       color: var(--muted);
       font-size: 14px;
-    }
-
-    .tagrow {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-top: 10px;
-    }
-
-    .tag {
-      font-size: 12px;
-      padding: 6px 10px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      background: #fafafa;
-    }
-
-    .callout {
-      background: rgba(139, 29, 58, .08);
-      border: 1px solid rgba(139, 29, 58, .20);
-      border-radius: var(--radius);
-      padding: 14px 16px;
-      color: #3a0b17;
     }
 
     footer {
@@ -245,11 +223,19 @@
   <div class="container">
 
     <div class="topline">
-      <div class="pill"><span class="dot"></span> Open to: Accounting Internship / Entry-Level (May 2026)</div>
-      <div class="pill"><span class="dot"></span> CPA path: Lone Star coursework after graduation</div>
+      <div class="pill">
+        <span class="dot"></span>
+        Open to: Accounting Internship / Entry-Level (May 2026)
+      </div>
+
+      <a href="coursework.html" class="pill-link">
+        <div class="pill">
+          <span class="dot"></span>
+          CPA path: Lone Star coursework after graduation
+        </div>
+      </a>
     </div>
 
-    <!-- HERO -->
     <header class="hero">
       <img src="2025-2026 Head Shot.jpg" alt="Headshot of Kayla Bui">
 
@@ -261,179 +247,19 @@
         </p>
 
         <div class="buttons">
-          <a class="btn primary" href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
-          <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn primary" href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank">Resume (PDF)</a>
+          <a class="btn" href="coursework.html">Coursework</a>
+          <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank">LinkedIn</a>
           <a class="btn" href="mailto:kbee0017@gmail.com">Email</a>
         </div>
       </div>
     </header>
 
-    <!-- ABOUT -->
-    <section>
-      <h2>About</h2>
-      <p>
-        Howdy! I’m Kayla Bui, a first-generation college student from Houston, Texas. I’m currently pursuing a
-        B.S. in Business Administration at <a href="https://www.tamu.edu/" target="_blank" rel="noopener">Texas A&amp;M University</a>
-        and graduating in May 2026.
-      </p>
-      <p>
-        I transitioned into business after starting in architecture, and I’ve become especially interested in accounting.
-        I enjoy detail-oriented work and building repeatable systems that make financial reporting more consistent and easier to review.
-      </p>
-    </section>
-
-    <!-- ACCOUNTING PATH -->
-    <section>
-      <h2>Accounting Path</h2>
-      <div class="callout">
-        <strong>Goal:</strong> Build a strong accounting foundation and qualify for the CPA exam.<br>
-        <strong>Plan:</strong> Start accounting coursework at Lone Star College and complete required classes/certificate for CPA eligibility.
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section>
-      <h2>Experience Highlights</h2>
-
-      <div class="grid three">
-        <div class="card">
-          <h3>Invoicing &amp; Project Reporting Support</h3>
-          <div class="meta">Construction project environment</div>
-          <ul class="clean">
-            <li>Supported invoicing workflows using completed P&amp;L data.</li>
-            <li>Organized recurring reporting and documentation for internal use.</li>
-          </ul>
-          <div class="tagrow">
-            <span class="tag">Reporting</span>
-            <span class="tag">Detail-Oriented</span>
-            <span class="tag">Operations</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Excel Standardization</h3>
-          <div class="meta">Templates + consistent formatting</div>
-          <ul class="clean">
-            <li>Created standardized layouts to reduce manual rework.</li>
-            <li>Improved consistency by aligning calculations and formatting across files.</li>
-          </ul>
-          <div class="tagrow">
-            <span class="tag">Excel</span>
-            <span class="tag">Templates</span>
-            <span class="tag">Quality Control</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>VBA Automation</h3>
-          <div class="meta">Dynamic reports that adapt when rows change</div>
-          <ul class="clean">
-            <li>Automated column moves and rebuilt formulas when P&amp;L rows expanded/contracted.</li>
-            <li>Used label-based anchors (e.g., Total COGS, Net Income) to avoid hard-coded cell references.</li>
-          </ul>
-          <div class="tagrow">
-            <span class="tag">VBA</span>
-            <span class="tag">Automation</span>
-            <span class="tag">Standardization</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECT / CASE STUDY -->
-    <section>
-      <h2>Project Spotlight</h2>
-
-      <div class="grid two">
-        <div class="card">
-          <h3>Excel/VBA Reporting Automation (Internship)</h3>
-          <div class="meta">Problem → Process → Output (portfolio summary)</div>
-          <ul class="clean">
-            <li><strong>Problem:</strong> P&amp;L exports changed row counts/layout each period, breaking formulas and requiring repetitive cleanup.</li>
-            <li><strong>Process:</strong> Built macros that locate key lines by label (ex: Total COGS, Net Income), move columns, and rebuild formulas dynamically.</li>
-            <li><strong>Output:</strong> Standardized summaries and metrics (e.g., % of COGS, cost per sq. ft.) with consistent formatting for review.</li>
-          </ul>
-          <div class="tagrow">
-            <span class="tag">Job Costing</span>
-            <span class="tag">P&amp;L Reporting</span>
-            <span class="tag">Excel/VBA</span>
-          </div>
-        </div>
-
-        <div class="card">
-          <h3>Invoicing Workflow Automation</h3>
-          <div class="meta">From raw time data → invoice-ready output</div>
-          <ul class="clean">
-            <li>Cleaned exports, grouped/categorized work from notes, and standardized formatting.</li>
-            <li>Applied billing rates via lookup and calculated time-cost amounts.</li>
-            <li>Generated subtotals, grand totals, and review-friendly summary lines.</li>
-          </ul>
-          <div class="tagrow">
-            <span class="tag">Invoicing</span>
-            <span class="tag">Lookups</span>
-            <span class="tag">Totals &amp; Subtotals</span>
-          </div>
-        </div>
-      </div>
-
-      <p class="meta" style="margin-top:12px;">
-        Note: Templates from my internship are no longer available, but the automation approach and logic are preserved and summarized here.
-      </p>
-    </section>
-
-    <!-- SKILLS -->
-    <section>
-      <h2>Skills</h2>
-      <div class="grid three">
-        <div class="card">
-          <h3>Accounting Interests</h3>
-          <ul class="clean">
-            <li>Job costing (construction)</li>
-            <li>Invoicing &amp; reporting support</li>
-            <li>Reconciliations (learning)</li>
-            <li>Financial statement fundamentals</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Tools</h3>
-          <ul class="clean">
-            <li>Excel (Pivots, XLOOKUP/VLOOKUP)</li>
-            <li>VBA (automation + dynamic formulas)</li>
-            <li>Documentation &amp; process writing</li>
-          </ul>
-        </div>
-
-        <div class="card">
-          <h3>Strengths</h3>
-          <ul class="clean">
-            <li>Consistent and detail-oriented</li>
-            <li>Process improvement mindset</li>
-            <li>Clear communication and collaboration</li>
-          </ul>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section>
-      <h2>Contact</h2>
-      <div class="card">
-        <p style="margin:0;color:var(--muted);">
-          The best way to reach me is by email or LinkedIn message. I’m happy to schedule a call after initial contact.
-        </p>
-        <div class="buttons" style="margin-top:12px;">
-          <a class="btn primary" href="mailto:kbee0017@gmail.com">Email me</a>
-          <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank" rel="noopener">Message on LinkedIn</a>
-        </div>
-      </div>
-    </section>
+    <footer>
+      <div class="footer-wrap">© 2026 Kayla Bui • Built with GitHub Pages</div>
+    </footer>
 
   </div>
-
-  <footer>
-    <div class="footer-wrap">© 2026 Kayla Bui • Built with GitHub Pages</div>
-  </footer>
 
 </body>
 </html>
