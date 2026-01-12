@@ -2,80 +2,240 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Kayla Bui</title>
+  <title>Kayla Bui | Accounting Portfolio</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Simple styling -->
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
   <style>
+    :root{
+      --bg: #420217;
+      --surface: #eef1f3;
+      --card: #ffffff;
+      --text: #111827;
+      --muted: #4b5563;
+      --border: #e5e7eb;
+      --accent: #8b1d3a;
+      --shadow: 0 10px 24px rgba(0,0,0,.10);
+      --radius: 14px;
+    }
+
+    * { box-sizing: border-box; }
+
     body {
       margin: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      background-color: #420217;
-      color: #222;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: radial-gradient(900px 400px at 20% 0%, rgba(255,255,255,.07), transparent 60%),
+                  radial-gradient(700px 450px at 80% 10%, rgba(255,255,255,.05), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
     }
 
     .container {
-      max-width: 900px;
-      margin: 40px auto;
-      background-color: #e5e7e9;
-      padding: 32px;
-      border-radius: 6px;
+      max-width: 980px;
+      margin: 28px auto;
+      background-color: var(--surface);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
     }
 
-    header {
+    .topline {
       display: flex;
-      gap: 30px;
+      justify-content: space-between;
       align-items: center;
+      gap: 12px;
+      margin-bottom: 16px;
       flex-wrap: wrap;
     }
 
-    header img {
-      width: 260px;
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(139, 29, 58, .10);
+      color: var(--accent);
+      font-weight: 600;
+      font-size: 13px;
+      border: 1px solid rgba(139, 29, 58, .20);
+    }
+
+    .pill .dot{
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--accent);
+      display: inline-block;
+    }
+
+    header.hero {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 22px;
+      align-items: center;
+      padding: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(255,255,255,.55));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    header.hero img {
+      width: 100%;
       height: auto;
-      border-radius: 6px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: #fff;
     }
 
     h1 {
-      margin-top: 0;
-      margin-bottom: 8px;
+      margin: 0 0 8px;
+      font-size: 34px;
+      line-height: 1.15;
+      letter-spacing: -0.02em;
     }
+
+    .headline {
+      margin: 0 0 12px;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 14px;
+      border-radius: 12px;
+      text-decoration: none;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: #fff;
+      color: var(--text);
+      transition: transform .06s ease, box-shadow .12s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 8px 18px rgba(0,0,0,.08);
+    }
+
+    .btn.primary {
+      background: var(--accent);
+      border-color: rgba(0,0,0,0);
+      color: #fff;
+    }
+
+    .btn.primary:hover {
+      background: #761830;
+    }
+
+    section { margin-top: 22px; }
 
     h2 {
-      margin-top: 36px;
-      border-bottom: 2px solid #ccc;
-      padding-bottom: 6px;
+      margin: 0 0 10px;
+      font-size: 18px;
+      letter-spacing: -0.01em;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
     }
 
-    .subtitle {
-      color: #555;
-      margin-bottom: 16px;
-    }
-
-    .buttons a {
-      display: inline-block;
-      margin-right: 12px;
-      margin-top: 10px;
-      padding: 10px 16px;
-      border: 1px solid #333;
-      text-decoration: none;
-      color: #000;
+    h2::before{
+      content: "";
+      width: 12px;
+      height: 12px;
       border-radius: 4px;
-      background-color: #fff;
+      background: var(--accent);
+      display: inline-block;
     }
 
-    .buttons a:hover {
-      background-color: #f2f2f2;
+    p { margin: 10px 0; }
+
+    a { color: var(--accent); }
+    a:hover { opacity: .9; }
+
+    .grid { display: grid; gap: 14px; }
+    .grid.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .grid.three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 16px;
     }
 
-    ul {
+    .card h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      letter-spacing: -0.01em;
+    }
+
+    .meta {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    ul.clean {
+      margin: 10px 0 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .tagrow {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
       margin-top: 10px;
+    }
+
+    .tag {
+      font-size: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      background: #fafafa;
+    }
+
+    .callout {
+      background: rgba(139, 29, 58, .08);
+      border: 1px solid rgba(139, 29, 58, .20);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      color: #3a0b17;
     }
 
     footer {
-      margin-top: 40px;
+      margin-top: 24px;
       text-align: center;
-      color: #555;
-      font-size: 14px;
+      color: rgba(255,255,255,.85);
+      font-size: 13px;
+      padding: 18px 0 6px;
+    }
+
+    .footer-wrap{
+      max-width: 980px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    @media (max-width: 860px){
+      header.hero { grid-template-columns: 1fr; }
+      .grid.two, .grid.three { grid-template-columns: 1fr; }
+      h1 { font-size: 30px; }
+      .container { margin: 18px 14px; padding: 18px; }
     }
   </style>
 </head>
@@ -84,64 +244,196 @@
 
   <div class="container">
 
-    <!-- HEADER -->
-    <header>
+    <div class="topline">
+      <div class="pill"><span class="dot"></span> Open to: Accounting Internship / Entry-Level (May 2026)</div>
+      <div class="pill"><span class="dot"></span> CPA path: Lone Star coursework after graduation</div>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero">
       <img src="2025-2026 Head Shot.jpg" alt="Headshot of Kayla Bui">
 
       <div>
         <h1>Kayla Bui</h1>
-        <p class="subtitle">
-          Business Administration student at Texas A&amp;M University<br>
-          Graduating May 2026
+        <p class="headline">
+          Business Administration student at Texas A&amp;M (May 2026) pivoting into accounting.
+          Interested in structured work, reconciliations, and improving reporting workflows—especially with Excel.
         </p>
 
         <div class="buttons">
-          <a href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank">Resume (PDF)</a>
-          <a href="mailto:kbee0017@gmail.com">Email</a>
-          <a href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank">LinkedIn</a>
+          <a class="btn primary" href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
+          <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="btn" href="mailto:kbee0017@gmail.com">Email</a>
         </div>
       </div>
     </header>
 
     <!-- ABOUT -->
-    <h2>About</h2>
-    <p>
-      Howdy! I’m Kayla Bui, a first-generation college student from Houston, Texas.
-      I’m currently pursuing a Bachelor of Science in Business Administration at
-      <a href="https://www.tamu.edu/" target="_blank">Texas A&amp;M University</a>,
-      Class of 2026.
-    </p>
+    <section>
+      <h2>About</h2>
+      <p>
+        Howdy! I’m Kayla Bui, a first-generation college student from Houston, Texas. I’m currently pursuing a
+        B.S. in Business Administration at <a href="https://www.tamu.edu/" target="_blank" rel="noopener">Texas A&amp;M University</a>
+        and graduating in May 2026.
+      </p>
+      <p>
+        I transitioned into business after starting in architecture, and I’ve become especially interested in accounting.
+        I enjoy detail-oriented work and building repeatable systems that make financial reporting more consistent and easier to review.
+      </p>
+    </section>
 
-    <p>
-      I originally began my studies in architecture, but after realizing the program
-      was not the right fit, I transitioned into business. Through coursework and
-      internship experience, I’ve become interested in accounting and enjoy roles
-      that combine structure, problem-solving, and operational support.
-    </p>
+    <!-- ACCOUNTING PATH -->
+    <section>
+      <h2>Accounting Path</h2>
+      <div class="callout">
+        <strong>Goal:</strong> Build a strong accounting foundation and qualify for the CPA exam.<br>
+        <strong>Plan:</strong> Start accounting coursework at Lone Star College and complete required classes/certificate for CPA eligibility.
+      </div>
+    </section>
 
-    <!-- EXPERIENCE HIGHLIGHTS -->
-    <h2>Experience Highlights</h2>
-    <ul>
-      <li>Supported invoicing and construction project reporting using completed P&amp;L data.</li>
-      <li>Created Excel templates and VBA automation to standardize formatting and calculations.</li>
-      <li>Helped improve efficiency and reduce manual work in recurring accounting tasks.</li>
-      <li>Collaborated with accountants and documented workflows for internal use.</li>
-    </ul>
+    <!-- EXPERIENCE -->
+    <section>
+      <h2>Experience Highlights</h2>
 
-    <!-- GOALS -->
-    <h2>What I’m Looking For</h2>
-    <ul>
-      <li>Accounting internship or entry-level role leading up to and after May 2026.</li>
-      <li>Small to mid-sized firm where I can learn accounting fundamentals hands-on.</li>
-      <li>Planning to complete an accounting certificate after graduation to qualify for the CPA exam.</li>
-    </ul>
+      <div class="grid three">
+        <div class="card">
+          <h3>Invoicing &amp; Project Reporting Support</h3>
+          <div class="meta">Construction project environment</div>
+          <ul class="clean">
+            <li>Supported invoicing workflows using completed P&amp;L data.</li>
+            <li>Organized recurring reporting and documentation for internal use.</li>
+          </ul>
+          <div class="tagrow">
+            <span class="tag">Reporting</span>
+            <span class="tag">Detail-Oriented</span>
+            <span class="tag">Operations</span>
+          </div>
+        </div>
 
-    <!-- FOOTER -->
-    <footer>
-      <p>© 2026 Kayla Bui</p>
-    </footer>
+        <div class="card">
+          <h3>Excel Standardization</h3>
+          <div class="meta">Templates + consistent formatting</div>
+          <ul class="clean">
+            <li>Created standardized layouts to reduce manual rework.</li>
+            <li>Improved consistency by aligning calculations and formatting across files.</li>
+          </ul>
+          <div class="tagrow">
+            <span class="tag">Excel</span>
+            <span class="tag">Templates</span>
+            <span class="tag">Quality Control</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>VBA Automation</h3>
+          <div class="meta">Dynamic reports that adapt when rows change</div>
+          <ul class="clean">
+            <li>Automated column moves and rebuilt formulas when P&amp;L rows expanded/contracted.</li>
+            <li>Used label-based anchors (e.g., Total COGS, Net Income) to avoid hard-coded cell references.</li>
+          </ul>
+          <div class="tagrow">
+            <span class="tag">VBA</span>
+            <span class="tag">Automation</span>
+            <span class="tag">Standardization</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECT / CASE STUDY -->
+    <section>
+      <h2>Project Spotlight</h2>
+
+      <div class="grid two">
+        <div class="card">
+          <h3>Excel/VBA Reporting Automation (Internship)</h3>
+          <div class="meta">Problem → Process → Output (portfolio summary)</div>
+          <ul class="clean">
+            <li><strong>Problem:</strong> P&amp;L exports changed row counts/layout each period, breaking formulas and requiring repetitive cleanup.</li>
+            <li><strong>Process:</strong> Built macros that locate key lines by label (ex: Total COGS, Net Income), move columns, and rebuild formulas dynamically.</li>
+            <li><strong>Output:</strong> Standardized summaries and metrics (e.g., % of COGS, cost per sq. ft.) with consistent formatting for review.</li>
+          </ul>
+          <div class="tagrow">
+            <span class="tag">Job Costing</span>
+            <span class="tag">P&amp;L Reporting</span>
+            <span class="tag">Excel/VBA</span>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Invoicing Workflow Automation</h3>
+          <div class="meta">From raw time data → invoice-ready output</div>
+          <ul class="clean">
+            <li>Cleaned exports, grouped/categorized work from notes, and standardized formatting.</li>
+            <li>Applied billing rates via lookup and calculated time-cost amounts.</li>
+            <li>Generated subtotals, grand totals, and review-friendly summary lines.</li>
+          </ul>
+          <div class="tagrow">
+            <span class="tag">Invoicing</span>
+            <span class="tag">Lookups</span>
+            <span class="tag">Totals &amp; Subtotals</span>
+          </div>
+        </div>
+      </div>
+
+      <p class="meta" style="margin-top:12px;">
+        Note: Templates from my internship are no longer available, but the automation approach and logic are preserved and summarized here.
+      </p>
+    </section>
+
+    <!-- SKILLS -->
+    <section>
+      <h2>Skills</h2>
+      <div class="grid three">
+        <div class="card">
+          <h3>Accounting Interests</h3>
+          <ul class="clean">
+            <li>Job costing (construction)</li>
+            <li>Invoicing &amp; reporting support</li>
+            <li>Reconciliations (learning)</li>
+            <li>Financial statement fundamentals</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Tools</h3>
+          <ul class="clean">
+            <li>Excel (Pivots, XLOOKUP/VLOOKUP)</li>
+            <li>VBA (automation + dynamic formulas)</li>
+            <li>Documentation &amp; process writing</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Strengths</h3>
+          <ul class="clean">
+            <li>Consistent and detail-oriented</li>
+            <li>Process improvement mindset</li>
+            <li>Clear communication and collaboration</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section>
+      <h2>Contact</h2>
+      <div class="card">
+        <p style="margin:0;color:var(--muted);">
+          The best way to reach me is by email or LinkedIn message. I’m happy to schedule a call after initial contact.
+        </p>
+        <div class="buttons" style="margin-top:12px;">
+          <a class="btn primary" href="mailto:kbee0017@gmail.com">Email me</a>
+          <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank" rel="noopener">Message on LinkedIn</a>
+        </div>
+      </div>
+    </section>
 
   </div>
+
+  <footer>
+    <div class="footer-wrap">© 2026 Kayla Bui • Built with GitHub Pages</div>
+  </footer>
 
 </body>
 </html>
