@@ -11,96 +11,742 @@
 
   <style>
     :root{
-      --bg: #420217;
-      --surface: #eef1f3;
-      --card: #ffffff;
+      --bg: #420217;              /* deep wine */
+      --surface: rgba(238,241,243,.92);
+      --bubble: rgba(255,255,255,.80);
+      --bubble2: rgba(255,255,255,.68);
       --text: #111827;
       --muted: #4b5563;
-      --border: #e5e7eb;
+      --border: rgba(17,24,39,.10);
       --accent: #8b1d3a;
-      --shadow: 0 10px 24px rgba(0,0,0,.10);
-      --radius: 14px;
+      --accent2: #c24a6c;
+      --shadow: 0 18px 55px rgba(0,0,0,.22);
+      --shadow2: 0 10px 24px rgba(0,0,0,.10);
+      --radius: 18px;
+      --radius2: 26px;
     }
+
     *{ box-sizing:border-box; }
+
     body{
       margin:0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(900px 400px at 20% 0%, rgba(255,255,255,.07), transparent 60%),
-                  radial-gradient(700px 450px at 80% 10%, rgba(255,255,255,.05), transparent 60%),
-                  var(--bg);
       color: var(--text);
       line-height: 1.6;
+      background:
+        radial-gradient(900px 450px at 20% 0%, rgba(255,255,255,.09), transparent 60%),
+        radial-gradient(700px 500px at 85% 15%, rgba(255,255,255,.06), transparent 60%),
+        radial-gradient(520px 520px at 70% 90%, rgba(255,140,175,.10), transparent 55%),
+        var(--bg);
+      overflow-x: hidden;
     }
+
+    /* floating blobs (bubble vibe) */
+    .blob{
+      position: fixed;
+      width: 480px;
+      height: 480px;
+      border-radius: 50%;
+      filter: blur(2px);
+      pointer-events:none;
+      opacity: .9;
+      z-index: 0;
+    }
+    .blob.one{
+      left:-220px; bottom:-220px;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.14), rgba(255,255,255,0) 65%);
+    }
+    .blob.two{
+      right:-260px; top:-260px;
+      width: 560px; height: 560px;
+      background: radial-gradient(circle at 60% 40%, rgba(255,110,200,.18), rgba(255,110,200,0) 65%);
+    }
+
     .container{
-      max-width: 980px;
-      margin: 28px auto;
-      background-color: var(--surface);
-      padding: 24px;
-      border-radius: var(--radius);
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 26px auto 80px;
+      padding: 22px;
+      background: var(--surface);
+      border-radius: var(--radius2);
       box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,.24);
+      backdrop-filter: blur(10px);
     }
+
+    /* nav */
     .nav{
       display:flex;
       justify-content: space-between;
       align-items:center;
       gap:12px;
       flex-wrap:wrap;
-      margin-bottom:14px;
+      margin-bottom:16px;
+    }
+    .navLeft{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
     }
     .btn{
-      display:inline-block;
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
       padding:10px 14px;
-      border-radius:12px;
+      border-radius: 999px;
       text-decoration:none;
-      font-weight:600;
-      border:1px solid var(--border);
-      background:#fff;
-      color:var(--text);
+      font-weight:700;
+      border:1px solid rgba(17,24,39,.10);
+      background: rgba(255,255,255,.78);
+      color: var(--text);
+      box-shadow: var(--shadow2);
+      transition: transform .12s ease, opacity .12s ease;
     }
-    .btn:hover{ opacity:.9; }
+    .btn:hover{ transform: translateY(-1px); opacity:.96; }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(139,29,58,.16), rgba(194,74,108,.10));
+      border: 1px solid rgba(139,29,58,.25);
+    }
+
+    /* header */
+    header{
+      padding: 10px 6px 2px;
+    }
     h1{
       margin: 6px 0 8px;
-      font-size: 30px;
-      letter-spacing:-0.02em;
+      font-size: clamp(26px, 3.3vw, 40px);
+      letter-spacing:-0.03em;
+      line-height: 1.15;
     }
-    .muted{ color: var(--muted); margin:0 0 18px; }
-    .grid{ display:grid; gap:14px; }
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 16px;
+    .muted{
+      color: var(--muted);
+      margin:0 0 14px;
+      max-width: 72ch;
     }
-    .card h2{
-      margin:0 0 6px;
-      font-size:18px;
+    .chips{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin: 10px 0 18px;
+    }
+    .chip{
+      font-size: 12px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(17,24,39,.10);
+      color: rgba(17,24,39,.72);
+      background: rgba(255,255,255,.68);
+    }
+
+    /* grid layout */
+    .grid{
+      display:grid;
+      gap: 16px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .span12{ grid-column: span 12; }
+    .span8{ grid-column: span 12; }
+    .span4{ grid-column: span 12; }
+    .span6{ grid-column: span 12; }
+
+    @media (min-width: 900px){
+      .span8{ grid-column: span 8; }
+      .span4{ grid-column: span 4; }
+      .span6{ grid-column: span 6; }
+    }
+
+    /* bubble cards */
+    .bubble{
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius2);
+      background: linear-gradient(180deg, var(--bubble), var(--bubble2));
+      border: 1px solid rgba(255,255,255,.55);
+      box-shadow: var(--shadow2);
+      padding: 18px;
+    }
+    .bubble::after{
+      content:"";
+      position:absolute;
+      right: -140px;
+      top: -140px;
+      width: 260px;
+      height: 260px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, rgba(255,255,255,.40), rgba(255,255,255,0) 68%);
+      transform: rotate(12deg);
+      pointer-events:none;
+    }
+    .bubble h2{
+      margin: 0 0 6px;
+      font-size: 18px;
       letter-spacing:-0.01em;
     }
-    .meta{ color: var(--muted); font-size: 13px; margin-bottom:10px; }
-    ul{ margin: 10px 0 0; padding-left: 18px; color: var(--muted); }
-    .tagrow{ display:flex; gap:8px; flex-wrap:wrap; margin-top:10px; }
+    .meta{
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+    .tagrow{
+      display:flex;
+      gap: 8px;
+      flex-wrap:wrap;
+      margin-top: 10px;
+    }
     .tag{
       font-size:12px;
       padding:6px 10px;
       border-radius:999px;
-      border:1px solid var(--border);
-      color:var(--muted);
-      background:#fafafa;
+      border:1px solid rgba(17,24,39,.10);
+      color: rgba(17,24,39,.70);
+      background: rgba(255,255,255,.65);
     }
-    .placeholder{
+
+    /* embed */
+    .embedWrap{
       margin-top: 12px;
-      border: 1px dashed rgba(0,0,0,.2);
-      border-radius: 12px;
-      padding: 12px;
-      color: var(--muted);
-      background: rgba(255,255,255,.6);
-      font-size: 13px;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(17,24,39,.12);
+      background: rgba(17,24,39,.04);
     }
+    .embedWrap iframe{
+      width:100%;
+      height: 560px;
+      border: 0;
+      display:block;
+    }
+
+    /* forms */
+    label{
+      display:block;
+      font-size: 12px;
+      color: rgba(17,24,39,.70);
+      margin: 10px 0 6px;
+      font-weight: 600;
+    }
+    input, textarea{
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(17,24,39,.12);
+      background: rgba(255,255,255,.75);
+      outline:none;
+      font-size: 14px;
+      font-family: inherit;
+    }
+    textarea{ min-height: 110px; resize: vertical; }
+
+    .row{
+      display:grid;
+      gap: 12px;
+      grid-template-columns: 1fr;
+    }
+    @media (min-width: 900px){
+      .row.two{ grid-template-columns: 1fr 1fr; }
+      .row.three{ grid-template-columns: 1fr 1fr 1fr; }
+    }
+
+    .btnRow{
+      display:flex;
+      flex-wrap:wrap;
+      gap:10px;
+      margin-top: 12px;
+    }
+    button{
+      border: 1px solid rgba(139,29,58,.22);
+      background: linear-gradient(135deg, rgba(139,29,58,.14), rgba(194,74,108,.10));
+      color: var(--text);
+      padding: 10px 12px;
+      border-radius: 999px;
+      cursor:pointer;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      transition: transform .12s ease, opacity .12s ease;
+    }
+    button:hover{ transform: translateY(-1px); opacity:.95; }
+    button.ghost{
+      border: 1px solid rgba(17,24,39,.12);
+      background: rgba(255,255,255,.70);
+      font-weight: 700;
+    }
+
+    /* results table */
+    .tableWrap{
+      margin-top: 12px;
+      border: 1px solid rgba(17,24,39,.12);
+      border-radius: 18px;
+      overflow:hidden;
+      background: rgba(255,255,255,.70);
+    }
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+    th, td{
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(17,24,39,.08);
+      text-align:left;
+      vertical-align: top;
+    }
+    th{
+      background: rgba(139,29,58,.06);
+      font-weight: 800;
+    }
+    tr:last-child td{ border-bottom:none; }
+
+    details{
+      border: 1px solid rgba(17,24,39,.10);
+      border-radius: 16px;
+      padding: 10px 12px;
+      background: rgba(255,255,255,.65);
+      margin-top: 10px;
+    }
+    summary{
+      cursor:pointer;
+      font-weight: 800;
+      color: rgba(17,24,39,.82);
+    }
+    .hint{
+      font-size: 12px;
+      color: rgba(17,24,39,.62);
+      margin-top: 8px;
+    }
+
+    footer{
+      margin-top: 18px;
+      color: rgba(17,24,39,.60);
+      font-size: 12px;
+      padding: 6px 6px 0;
+    }
+
     @media (max-width: 860px){
-      .container{ margin: 18px 14px; padding: 18px; }
+      .container{ margin: 16px 12px 60px; padding: 16px; }
+      .embedWrap iframe{ height: 460px; }
     }
   </style>
 </head>
 
 <body>
- 
+  <div class="blob one"></div>
+  <div class="blob two"></div>
+
+  <div class="container">
+    <!-- NAV -->
+    <div class="nav">
+      <div class="navLeft">
+        <div class="brand">Kayla Bui</div>
+        <!-- Update these hrefs to match your repo pages -->
+        <a class="btn" href="index.html">Home</a>
+        <a class="btn" href="coursework.html">Coursework</a>
+        <a class="btn primary" href="project.html">Projects</a>
+      </div>
+      <div>
+        <a class="btn" href="resume.html">Resume</a>
+      </div>
+    </div>
+
+    <!-- HEADER -->
+    <header>
+      <h1>Projects</h1>
+      <p class="muted">
+        Here are my projects in accounting, event planning, and coding — including a Canva presentation embed and an automated financial analysis demo.
+      </p>
+      <div class="chips">
+        <div class="chip">Accounting</div>
+        <div class="chip">Analytics</div>
+        <div class="chip">Automation</div>
+        <div class="chip">Event Planning</div>
+        <div class="chip">Documentation</div>
+      </div>
+    </header>
+
+    <div class="grid">
+      <!-- CANVA -->
+      <section class="bubble span8">
+        <h2>Canva Presentation</h2>
+        <div class="meta">Embedded directly on this page (no link-out)</div>
+
+        <div class="embedWrap">
+          <!-- IMPORTANT:
+               In Canva → Share → Embed → copy the iframe URL and paste into src below. -->
+          <iframe
+            loading="lazy"
+            allowfullscreen="allowfullscreen"
+            allow="fullscreen"
+            src="PASTE_YOUR_CANVA_EMBED_URL_HERE">
+          </iframe>
+        </div>
+
+        <div class="hint">
+          If the arrows don’t appear, re-copy the embed code from Canva (Share → Embed).
+        </div>
+
+        <div class="tagrow">
+          <span class="tag">Canva</span>
+          <span class="tag">Presentation</span>
+          <span class="tag">Embedded</span>
+        </div>
+      </section>
+
+      <!-- QUICK SUMMARY -->
+      <section class="bubble span4">
+        <h2>Highlights</h2>
+        <div class="meta">What this page proves</div>
+        <ul style="margin:0; padding-left:18px; color: rgba(17,24,39,.72);">
+          <li>Portfolio-ready project storytelling</li>
+          <li>Accounting automation (vertical + horizontal analysis)</li>
+          <li>Team contribution + event planning</li>
+          <li>Process documentation and learning notes</li>
+        </ul>
+        <div class="tagrow">
+          <span class="tag">Professional</span>
+          <span class="tag">CPA Track</span>
+        </div>
+      </section>
+
+      <!-- ACCOUNTING TOOL -->
+      <section class="bubble span12">
+        <h2>Accounting Automation Demo</h2>
+        <div class="meta">Vertical analysis (% of base) + Horizontal analysis (Δ and % change)</div>
+        <p style="margin:0; color: rgba(17,24,39,.72);">
+          Use textbook numbers or public company numbers (SEC filings). Do not use any confidential internship/client data.
+        </p>
+
+        <div class="row three" style="margin-top:12px;">
+          <div>
+            <label for="year1">Year 1 Label</label>
+            <input id="year1" value="2024">
+          </div>
+          <div>
+            <label for="year2">Year 2 Label</label>
+            <input id="year2" value="2025">
+          </div>
+          <div>
+            <label for="baseHint">Vertical base</label>
+            <input id="baseHint" value="Income Statement uses Net Sales; Balance Sheet uses Total Assets">
+          </div>
+        </div>
+
+        <div class="row two">
+          <div>
+            <label for="data1">Year 1 Data (Item, Amount)</label>
+            <textarea id="data1">Net Sales, 500000
+COGS, 320000
+Gross Profit, 180000
+Operating Expenses, 90000
+Net Income, 65000</textarea>
+            <div class="hint">One line per item. Example: <code>COGS, 320000</code></div>
+          </div>
+
+          <div>
+            <label for="data2">Year 2 Data (Item, Amount)</label>
+            <textarea id="data2">Net Sales, 575000
+COGS, 360000
+Gross Profit, 215000
+Operating Expenses, 98000
+Net Income, 82000</textarea>
+            <div class="hint">Try to keep item names the same across years.</div>
+          </div>
+        </div>
+
+        <div class="btnRow">
+          <button id="runBtn">Run Analysis</button>
+          <button class="ghost" id="loadISBtn" type="button">Load Income Statement Example</button>
+          <button class="ghost" id="loadBSBtn" type="button">Load Balance Sheet Example</button>
+          <button class="ghost" id="clearBtn" type="button">Clear</button>
+        </div>
+
+        <div id="results" class="tableWrap" style="display:none;"></div>
+
+        <div class="tagrow">
+          <span class="tag">JavaScript</span>
+          <span class="tag">Financial Statements</span>
+          <span class="tag">Analytics</span>
+        </div>
+      </section>
+
+      <!-- EVENT PROJECT -->
+      <section class="bubble span6">
+        <h2>Event Planning Project (12-person team)</h2>
+        <div class="meta">What I did to help the team make the event possible</div>
+
+        <label for="eventRole">My role</label>
+        <input id="eventRole" placeholder="Ex: budget tracking, logistics, project manager, sponsorship outreach...">
+
+        <label for="eventTools">Tools I used</label>
+        <input id="eventTools" placeholder="Ex: Excel, Google Sheets, Trello, Canva, Slack...">
+
+        <label for="eventImpact">Key actions + impact</label>
+        <textarea id="eventImpact" placeholder="- Built timeline and delegated tasks
+- Created budget tracker and monitored spend
+- Coordinated vendors / room reservations
+- Led meeting notes and follow-ups
+- Post-event recap + improvements"></textarea>
+
+        <div class="tagrow">
+          <span class="tag">Teamwork</span>
+          <span class="tag">Planning</span>
+          <span class="tag">Leadership</span>
+        </div>
+      </section>
+
+      <!-- INTERNSHIP NOTES -->
+      <section class="bubble span6">
+        <h2>Internship Documentation Notes</h2>
+        <div class="meta">Portfolio-safe SOPs (sanitized)</div>
+
+        <p style="margin:0; color: rgba(17,24,39,.72);">
+          Keep these general: remove client names, unique IDs, and proprietary details.
+        </p>
+
+        <details>
+          <summary>Example: Bank Reconciliation Checklist</summary>
+          <div class="hint" style="margin-top:8px;">
+            1) Pull bank activity report<br>
+            2) Match deposits/withdrawals to ledger<br>
+            3) Investigate variances (timing vs errors)<br>
+            4) Document adjustments and reviewer sign-off
+          </div>
+        </details>
+
+        <details>
+          <summary>Add your notes here (copy/paste sanitized)</summary>
+          <label for="docNotes">Notes</label>
+          <textarea id="docNotes" placeholder="Title: ...
+Steps:
+1) ...
+Common issues:
+- ...
+Controls/notes:
+- ..."></textarea>
+        </details>
+
+        <div class="tagrow">
+          <span class="tag">Documentation</span>
+          <span class="tag">Process</span>
+          <span class="tag">Learning</span>
+        </div>
+      </section>
+
+      <!-- NEXT PROJECT IDEAS -->
+      <section class="bubble span12">
+        <h2>Next Project Ideas for Your Portfolio</h2>
+        <div class="meta">Accounting + coding projects that fit your CPA path</div>
+
+        <div class="tableWrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Project</th>
+                <th>What it shows</th>
+                <th>Portfolio-friendly data</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ratio Dashboard</td>
+                <td>Liquidity, profitability, leverage, efficiency + explanations</td>
+                <td>Textbook or SEC filings</td>
+              </tr>
+              <tr>
+                <td>Budget vs Actual Tool</td>
+                <td>Variance analysis, managerial accounting skills</td>
+                <td>Mock or textbook budgets</td>
+              </tr>
+              <tr>
+                <td>Inventory Method Simulator</td>
+                <td>FIFO/LIFO/Weighted Avg impact on COGS + income</td>
+                <td>Synthetic inventory transactions</td>
+              </tr>
+              <tr>
+                <td>Close Checklist Tracker</td>
+                <td>Controls mindset, workflow organization</td>
+                <td>Generic checklist (no firm templates)</td>
+              </tr>
+              <tr>
+                <td>Event Planning Dashboard</td>
+                <td>Planning + communication + budget control</td>
+                <td>Your event data (safe)</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="hint">
+          Safe statement sources: textbook problems, synthetic data you create, or public 10-K/10-Q statements.
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      Built on GitHub Pages • Bubble-style UI • Embedded presentation • Accounting automation demo
+    </footer>
+  </div>
+
+  <script>
+    function parseCSV(text){
+      const lines = text.split(/\n+/).map(l => l.trim()).filter(Boolean);
+      const map = new Map();
+      for(const line of lines){
+        const parts = line.split(",");
+        if(parts.length < 2) continue;
+        const item = parts[0].trim();
+        const amtRaw = parts.slice(1).join(",").trim();
+        const amt = Number(String(amtRaw).replace(/[$\s]/g,"").replace(/,/g,""));
+        if(item && Number.isFinite(amt)) map.set(item, amt);
+      }
+      return map;
+    }
+
+    function fmt(n){
+      if(n === null || n === undefined || Number.isNaN(n)) return "";
+      return n.toLocaleString(undefined, { maximumFractionDigits: 2 });
+    }
+
+    function fmtPct(n){
+      if(n === null || n === undefined || Number.isNaN(n)) return "";
+      return (n*100).toFixed(2) + "%";
+    }
+
+    function compute(){
+      const y1 = document.getElementById("year1").value.trim() || "Year 1";
+      const y2 = document.getElementById("year2").value.trim() || "Year 2";
+      const m1 = parseCSV(document.getElementById("data1").value);
+      const m2 = parseCSV(document.getElementById("data2").value);
+
+      const items = Array.from(new Set([...m1.keys(), ...m2.keys()]));
+
+      // Choose a vertical base:
+      // Prefer Net Sales, else Total Assets, else first available item from year1/year2.
+      const base1 = m1.get("Net Sales") ?? m1.get("Total Assets") ?? (items.length ? (m1.get(items[0]) ?? null) : null);
+      const base2 = m2.get("Net Sales") ?? m2.get("Total Assets") ?? (items.length ? (m2.get(items[0]) ?? null) : null);
+
+      let html = `
+        <table>
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>${y1} Amount</th>
+              <th>${y1} Vertical</th>
+              <th>${y2} Amount</th>
+              <th>${y2} Vertical</th>
+              <th>Δ (${y2} - ${y1})</th>
+              <th>% Change</th>
+            </tr>
+          </thead>
+          <tbody>
+      `;
+
+      for(const item of items){
+        const a1 = m1.has(item) ? m1.get(item) : null;
+        const a2 = m2.has(item) ? m2.get(item) : null;
+
+        const v1 = (a1 !== null && base1) ? (a1 / base1) : null;
+        const v2 = (a2 !== null && base2) ? (a2 / base2) : null;
+
+        const delta = (a1 !== null && a2 !== null) ? (a2 - a1) : null;
+        const pctChange = (a1 !== null && a2 !== null && a1 !== 0) ? ((a2 - a1) / a1) : null;
+
+        html += `
+          <tr>
+            <td>${item}</td>
+            <td>${a1 === null ? "" : fmt(a1)}</td>
+            <td>${v1 === null ? "" : fmtPct(v1)}</td>
+            <td>${a2 === null ? "" : fmt(a2)}</td>
+            <td>${v2 === null ? "" : fmtPct(v2)}</td>
+            <td>${delta === null ? "" : fmt(delta)}</td>
+            <td>${pctChange === null ? "" : fmtPct(pctChange)}</td>
+          </tr>
+        `;
+      }
+
+      html += `</tbody></table>`;
+
+      const res = document.getElementById("results");
+      res.innerHTML = html;
+      res.style.display = "block";
+      res.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+
+    function loadIncomeStatementExample(){
+      document.getElementById("year1").value = "2024";
+      document.getElementById("year2").value = "2025";
+      document.getElementById("data1").value =
+`Net Sales, 500000
+COGS, 320000
+Gross Profit, 180000
+Operating Expenses, 90000
+Operating Income, 90000
+Interest Expense, 12000
+Net Income, 65000`;
+      document.getElementById("data2").value =
+`Net Sales, 575000
+COGS, 360000
+Gross Profit, 215000
+Operating Expenses, 98000
+Operating Income, 117000
+Interest Expense, 14000
+Net Income, 82000`;
+    }
+
+    function loadBalanceSheetExample(){
+      document.getElementById("year1").value = "2024";
+      document.getElementById("year2").value = "2025";
+      document.getElementById("data1").value =
+`Cash, 45000
+Accounts Receivable, 62000
+Inventory, 78000
+Total Current Assets, 185000
+PP&E, 210000
+Total Assets, 395000
+Accounts Payable, 54000
+Short-Term Debt, 20000
+Total Current Liabilities, 74000
+Long-Term Debt, 110000
+Total Liabilities, 184000
+Common Stock, 90000
+Retained Earnings, 121000
+Total Equity, 211000
+Total Liabilities & Equity, 395000`;
+      document.getElementById("data2").value =
+`Cash, 52000
+Accounts Receivable, 70000
+Inventory, 83000
+Total Current Assets, 205000
+PP&E, 230000
+Total Assets, 435000
+Accounts Payable, 60000
+Short-Term Debt, 18000
+Total Current Liabilities, 78000
+Long-Term Debt, 125000
+Total Liabilities, 203000
+Common Stock, 90000
+Retained Earnings, 142000
+Total Equity, 232000
+Total Liabilities & Equity, 435000`;
+    }
+
+    function clearAll(){
+      document.getElementById("data1").value = "";
+      document.getElementById("data2").value = "";
+      const res = document.getElementById("results");
+      res.style.display = "none";
+      res.innerHTML = "";
+    }
+
+    document.getElementById("runBtn").addEventListener("click", compute);
+    document.getElementById("loadISBtn").addEventListener("click", loadIncomeStatementExample);
+    document.getElementById("loadBSBtn").addEventListener("click", loadBalanceSheetExample);
+    document.getElementById("clearBtn").addEventListener("click", clearAll);
+  </script>
+</body>
+</html>
