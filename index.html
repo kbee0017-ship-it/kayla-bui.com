@@ -19,7 +19,9 @@
       --muted: #4b5563;
       --border: #e5e7eb;
       --accent: #8b1d3a;
+      --accent2: #c24a6c;
       --shadow: 0 10px 24px rgba(0,0,0,.10);
+      --shadow2: 0 10px 24px rgba(0,0,0,.10);
       --radius: 14px;
     }
 
@@ -28,9 +30,10 @@
     body {
       margin: 0;
       font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-      background: radial-gradient(900px 400px at 20% 0%, rgba(255,255,255,.07), transparent 60%),
-                  radial-gradient(700px 450px at 80% 10%, rgba(255,255,255,.05), transparent 60%),
-                  var(--bg);
+      background:
+        radial-gradient(900px 400px at 20% 0%, rgba(255,255,255,.07), transparent 60%),
+        radial-gradient(700px 450px at 80% 10%, rgba(255,255,255,.05), transparent 60%),
+        var(--bg);
       color: var(--text);
       line-height: 1.6;
     }
@@ -44,58 +47,44 @@
       box-shadow: var(--shadow);
     }
 
-    .topline {
-      display: flex;
+    /* NAV (matches projects/coursework vibe) */
+    .nav{
+      display:flex;
       justify-content: space-between;
-      align-items: center;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom:20px;
     }
-
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 8px 12px;
+    .navLeft{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+    }
+    .brand{
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
       border-radius: 999px;
-      background: rgba(139, 29, 58, .10);
-      color: var(--accent);
-      font-weight: 600;
-      font-size: 13px;
-      border: 1px solid rgba(139, 29, 58, .20);
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid rgba(17,24,39,.10);
+      background: rgba(255,255,255,.85);
+      color: var(--text);
+      box-shadow: var(--shadow2);
+      transition: transform .12s ease, opacity .12s ease;
     }
-
-    .pill .dot{
-      width: 8px; height: 8px; border-radius: 50%;
-      background: var(--accent);
-      display: inline-block;
-    }
-
-    /* --- CPA pill: make it look like a real clickable button --- */
-    .pill-cta{
-      text-decoration: none;           /* removes underline */
-      background: var(--accent);       /* filled button look */
-      color: #fff;
-      border-color: transparent;
-      box-shadow: 0 8px 18px rgba(0,0,0,.10);
-      transition: transform .06s ease, box-shadow .12s ease, background .12s ease;
-    }
-
-    .pill-cta .dot{
-      background: #fff;                /* dot contrasts on filled background */
-    }
-
-    .pill-cta:hover{
-      background: #761830;
-      transform: translateY(-1px);
-      box-shadow: 0 12px 22px rgba(0,0,0,.12);
-      cursor: pointer;
-    }
-
-    .pill-cta:focus-visible{
-      outline: 3px solid rgba(139,29,58,.35);
-      outline-offset: 3px;
+    .btn:hover{ transform: translateY(-1px); opacity:.96; }
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(139,29,58,.16), rgba(194,74,108,.10));
+      border: 1px solid rgba(139,29,58,.25);
     }
 
     header.hero {
@@ -137,31 +126,14 @@
       margin-top: 12px;
     }
 
-    .btn {
-      display: inline-block;
-      padding: 10px 14px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 600;
-      border: 1px solid var(--border);
-      background: #fff;
+    /* reuse nav button style for hero buttons */
+    .buttons .btn{
+      border-radius: 999px;
+    }
+    .buttons .btn.primary{
+      background: linear-gradient(135deg, rgba(139,29,58,.16), rgba(194,74,108,.10));
+      border: 1px solid rgba(139,29,58,.25);
       color: var(--text);
-      transition: transform .06s ease, box-shadow .12s ease;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 8px 18px rgba(0,0,0,.08);
-    }
-
-    .btn.primary {
-      background: var(--accent);
-      border-color: rgba(0,0,0,0);
-      color: #fff;
-    }
-
-    .btn.primary:hover {
-      background: #761830;
     }
 
     section { margin-top: 22px; }
@@ -185,7 +157,6 @@
     }
 
     p { margin: 10px 0; }
-
     a { color: var(--accent); }
     a:hover { opacity: .9; }
 
@@ -267,18 +238,19 @@
 </head>
 
 <body>
-
   <div class="container">
 
-    <div class="topline">
-      <!-- NOT clickable -->
-      <div class="pill"><span class="dot"></span> Open to: Accounting Internship / Entry-Level (May 2026)</div>
-
-      <!-- Clickable CPA button -->
-      <a class="pill pill-cta" href="coursework.html">
-        <span class="dot"></span>
-        CPA Roadmap
-      </a>
+    <!-- NAV (top buttons like projects/coursework) -->
+    <div class="nav">
+      <div class="navLeft">
+        <div class="brand">Kayla Bui</div>
+        <a class="btn primary" href="index.html">Home</a>
+        <a class="btn" href="projects.html">Projects</a>
+        <a class="btn" href="coursework.html">Coursework</a>
+      </div>
+      <div>
+        <a class="btn" href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank" rel="noopener">Resume</a>
+      </div>
     </div>
 
     <!-- HERO -->
@@ -293,10 +265,8 @@
         </p>
 
         <div class="buttons">
-          <a class="btn primary" href="KAYLA_BUI_Ongoing_Resume_2025_2026.pdf" target="_blank" rel="noopener">Resume (PDF)</a>
           <a class="btn" href="https://www.linkedin.com/in/aggiekaylabui/" target="_blank" rel="noopener">LinkedIn</a>
           <a class="btn" href="mailto:kbee0017@gmail.com">Email</a>
-          <a class="btn" href="projects.html">Projects</a>
         </div>
       </div>
     </header>
@@ -448,14 +418,10 @@
       </div>
     </section>
 
-
   </div>
 
   <footer>
     <div class="footer-wrap">© 2026 Kayla Bui • Built with GitHub Pages</div>
   </footer>
-
 </body>
 </html>
-
-
