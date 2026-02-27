@@ -1,134 +1,228 @@
-gra<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Coursework | Kayla Bui</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<style>
-  body {
-    font-family: Inter, Arial, sans-serif;
-    background:#420217;
-    margin:0;
-  }
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-  .wrap {
-    max-width:900px;
-    margin:40px auto;
-    background:#eef1f3;
-    padding:28px;
-    border-radius:14px;
-  }
-
-  h1 {
-    margin-top:0;
-  }
-
-  .card {
-    background:#fff;
-    padding:22px;
-    border-radius:16px;
-    margin-bottom:18px;
-    box-shadow: 0 8px 22px rgba(0,0,0,0.06);
-  }
-
-  h3 {
-    margin-top:0;
-    font-size:1.05rem;
-    letter-spacing:0.3px;
-  }
-
-  a {
-    color:#8b1d3a;
-    font-weight:600;
-    text-decoration:none;
-  }
-
-  /* ===== NEW COURSEWORK STYLES ===== */
-
-  .course-list {
-    list-style:none;
-    padding:0;
-    margin:0;
-    display:grid;
-    gap:10px;
-  }
-
-  .course-list li {
-    display:flex;
-    gap:8px;
-    line-height:1.3;
-    font-size:0.95rem;
-    color:rgba(0,0,0,0.78);
-  }
-
-  .course-list strong {
-    font-weight:650;
-    color:rgba(0,0,0,0.92);
-    white-space:nowrap;
-  }
-
-  .sep {
-    color:rgba(0,0,0,0.35);
-  }
-
-  @media (min-width:720px) {
-    .course-list {
-      grid-template-columns:1fr 1fr;
-      gap:10px 18px;
+  <style>
+    :root{
+      --bg:#420217;
+      --surface:#eef1f3;
+      --card:#ffffff;
+      --text:#111827;
+      --muted:#4b5563;
+      --accent:#8b1d3a;
+      --shadow:0 8px 22px rgba(0,0,0,0.08);
+      --radius:16px;
     }
-  }
-</style>
 
+    *{ box-sizing:border-box; }
+
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    .wrap{
+      max-width: 980px;
+      margin: 28px auto 60px;
+      background: var(--surface);
+      padding: 22px;
+      border-radius: 18px;
+    }
+
+    /* TOP NAV (buttons only: Home + Projects) */
+    .nav{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      flex-wrap:wrap;
+      margin-bottom: 18px;
+    }
+    .brand{
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      margin-right: 6px;
+    }
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      padding:10px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight:700;
+      border:1px solid rgba(17,24,39,.10);
+      background: rgba(255,255,255,.78);
+      color: var(--text);
+      box-shadow: 0 10px 24px rgba(0,0,0,.10);
+      transition: transform .12s ease, opacity .12s ease;
+    }
+    .btn:hover{ transform: translateY(-1px); opacity:.96; }
+
+    h1{
+      margin: 10px 0 10px;
+      letter-spacing: -0.02em;
+    }
+    p{
+      margin: 0 0 12px;
+      color: rgba(17,24,39,.78);
+      line-height: 1.6;
+    }
+
+    .card{
+      background: var(--card);
+      padding: 18px;
+      border-radius: var(--radius);
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+
+    h3{
+      margin: 0 0 8px;
+      font-size: 1.05rem;
+      letter-spacing: 0.2px;
+    }
+
+    .subhead{
+      margin: 14px 0 8px;
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: rgba(17,24,39,.86);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    /* Organized chips */
+    .chipGrid{
+      display:grid;
+      gap:10px;
+      grid-template-columns: 1fr;
+      margin-top: 10px;
+    }
+    @media (min-width: 740px){
+      .chipGrid{ grid-template-columns: 1fr 1fr; }
+    }
+
+    .courseChip{
+      border: 1px solid rgba(17,24,39,.10);
+      background: rgba(250,250,250,.92);
+      border-radius: 14px;
+      padding: 10px 12px;
+      display:flex;
+      justify-content: space-between;
+      gap:10px;
+      align-items: baseline;
+    }
+    .courseChip strong{
+      font-weight: 800;
+      color: rgba(17,24,39,.92);
+    }
+    .courseChip span{
+      color: rgba(17,24,39,.62);
+      font-size: 0.92rem;
+      text-align:right;
+    }
+
+    .note{
+      font-size: 0.92rem;
+      color: rgba(17,24,39,.68);
+      margin-top: 8px;
+    }
+  </style>
 </head>
 
-  <div class="wrap">
-    <h1>Coursework & Accounting Preparation</h1>
-
-    <div class="card">
-  <h3>Accounting Certificate Coursework</h3>
-<p align="left">Coursework aligned with CPA licensure requirements, focused on building a strong foundation in financial reporting, managerial accounting, and GAAP-based principles.</p>
-  <ul>
-    <li><strong>Financial Accounting</strong> — Completed</li>
-    <li><strong>Managerial Accounting</strong> — In Progress</li>
-    <li><strong>Intermediate Accounting</strong> — Planned</li>
-  </ul>
-</div>
-
-
 <body>
-  <div class="card">
-  <h3>Undergraduate Coursework (Finance • Analytics • Consulting)</h3>
-  <p align="left">Academic training in accounting, finance, analytics, economics, and business strategy, with emphasis on data-driven decision-making.</p>
-  <ul class="course-list">
-    <li><strong>Financial Accounting</strong><span class="sep">•</span> Financial statements & reporting</li>
-    <li><strong>Managerial Accounting</strong><span class="sep">•</span> Costing & budgeting</li>
-    <li><strong>Corporate Finance</strong><span class="sep">•</span> Valuation & capital budgeting</li>
-    <li><strong>Business Statistics</strong><span class="sep">•</span> Regression & hypothesis testing</li>
-    <li><strong>Statistical Inference</strong><span class="sep">•</span> Confidence intervals</li>
-    <li><strong>Business Information Systems</strong><span class="sep">•</span> Data & process support</li>
-    <li><strong>Strategic Management</strong><span class="sep">•</span> Competitive strategy</li>
-    <li><strong>Business Law</strong><span class="sep">•</span> Contracts & legal environment</li>
-    <li><strong>Supply Chain Management</strong><span class="sep">•</span> Operations & logistics</li>
-    <li><strong>Marketing</strong><span class="sep">•</span> Consumer behavior</li>
-    <li><strong>Microeconomics</strong><span class="sep">•</span> Markets & incentives</li>
-    <li><strong>Macroeconomics</strong><span class="sep">•</span> Growth & policy</li>
-    <li><strong>Internship</strong><span class="sep">•</span> Applied analysis & automation</li>
-  </ul>
+  <div class="wrap">
 
-  <h3 style="margin-top:18px;">Psychology Minor (People • Decisions)</h3>
-    <p align="left">Academic training in human behavior and workplace psychology to support client communication, teamwork, and professional judgment.</p>
-  <ul class="course-list">
-    <li><strong>Cognitive Psychology</strong><span class="sep">•</span> Decision-making</li>
-    <li><strong>Personnel Psychology</strong><span class="sep">•</span> Workplace behavior</li>
-    <li><strong>Personality Psychology</strong><span class="sep">•</span> Individual differences</li>
-    <li><strong>Media Psychology</strong><span class="sep">•</span> Digital behavior</li>
-    <li><strong>Introductory Psychology</strong><span class="sep">•</span> Behavioral foundations</li>
-  </ul>
-</div>
+    <!-- NAV (only Home + Projects) -->
+    <div class="nav">
+      <div class="brand">Kayla Bui</div>
+      <a class="btn" href="index.html">Home</a>
+      <a class="btn" href="project.html">Projects</a>
+    </div>
 
-    <p><a href="index.html">← Back to home</a></p>
+    <h1>Coursework & Accounting Preparation</h1>
+    <p>
+      Coursework aligned with CPA preparation and business fundamentals, with emphasis on financial reporting,
+      analysis, and practical decision-making.
+    </p>
+
+    <!-- CARD 1 -->
+    <div class="card">
+      <h3>Accounting Track (CPA Preparation)</h3>
+      <p>
+        Coursework aligned with CPA licensure requirements, focused on building a strong foundation in financial reporting,
+        managerial accounting, and GAAP-based principles.
+      </p>
+
+      <div class="chipGrid">
+        <div class="courseChip"><strong>Financial Accounting</strong><span>Completed</span></div>
+        <div class="courseChip"><strong>Managerial Accounting</strong><span>In Progress</span></div>
+        <div class="courseChip"><strong>Intermediate Accounting</strong><span>Planned</span></div>
+      </div>
+
+      <div class="note">
+        Plan: complete post-graduate coursework to meet CPA eligibility requirements and prepare to sit for the CPA exam.
+      </div>
+    </div>
+
+    <!-- CARD 2 (organized) -->
+    <div class="card">
+      <h3>Undergraduate Coursework</h3>
+      <p>
+        Training across accounting, finance, analytics, economics, and business strategy, with emphasis on data-driven decision-making.
+      </p>
+
+      <div class="subhead">Accounting & Finance</div>
+      <div class="chipGrid">
+        <div class="courseChip"><strong>Financial Accounting</strong><span>Statements & reporting</span></div>
+        <div class="courseChip"><strong>Managerial Accounting</strong><span>Costing & budgeting</span></div>
+        <div class="courseChip"><strong>Corporate Finance</strong><span>Valuation & budgeting</span></div>
+        <div class="courseChip"><strong>Business Law</strong><span>Contracts & legal env.</span></div>
+      </div>
+
+      <div class="subhead">Analytics & Systems</div>
+      <div class="chipGrid">
+        <div class="courseChip"><strong>Business Statistics</strong><span>Regression & testing</span></div>
+        <div class="courseChip"><strong>Statistical Inference</strong><span>Confidence intervals</span></div>
+        <div class="courseChip"><strong>Business Info Systems</strong><span>Data & process support</span></div>
+        <div class="courseChip"><strong>Strategic Management</strong><span>Competitive strategy</span></div>
+      </div>
+
+      <div class="subhead">Operations & Markets</div>
+      <div class="chipGrid">
+        <div class="courseChip"><strong>Supply Chain Mgmt</strong><span>Ops & logistics</span></div>
+        <div class="courseChip"><strong>Marketing</strong><span>Consumer behavior</span></div>
+        <div class="courseChip"><strong>Microeconomics</strong><span>Markets & incentives</span></div>
+        <div class="courseChip"><strong>Macroeconomics</strong><span>Growth & policy</span></div>
+      </div>
+    </div>
+
+    <!-- CARD 3 (organized) -->
+    <div class="card">
+      <h3>Psychology Minor (People • Decisions)</h3>
+      <p>
+        Training in human behavior and workplace psychology to support client communication, teamwork, and professional judgment.
+      </p>
+
+      <div class="chipGrid">
+        <div class="courseChip"><strong>Cognitive Psychology</strong><span>Decision-making</span></div>
+        <div class="courseChip"><strong>Personnel Psychology</strong><span>Workplace behavior</span></div>
+        <div class="courseChip"><strong>Personality Psychology</strong><span>Individual differences</span></div>
+        <div class="courseChip"><strong>Media Psychology</strong><span>Digital behavior</span></div>
+        <div class="courseChip"><strong>Intro Psychology</strong><span>Behavior foundations</span></div>
+      </div>
+    </div>
+
   </div>
 </body>
 </html>
-
