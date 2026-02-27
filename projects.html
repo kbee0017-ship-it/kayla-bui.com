@@ -370,32 +370,52 @@
     </header>
 
     <div class="grid">
-      <!-- CANVA -->
-      <section class="bubble span8">
-        <h2>Canva Presentation</h2>
-        <div class="meta">Embedded directly on this page (no link-out)</div>
+      <!-- DOCUMENTATION (replaces CANVA) -->
+<section class="bubble span8">
+  <h2>Accounting Automation Documentation</h2>
+  <div class="meta">Selected internship notes (sanitized) + VBA workflow approach</div>
 
-        <div class="embedWrap">
-          <!-- IMPORTANT:
-               In Canva → Share → Embed → copy the iframe URL and paste into src below. -->
-          <iframe
-            loading="lazy"
-            allowfullscreen="allowfullscreen"
-            allow="fullscreen"
-            src="https://www.canva.com/design/DAGfX_oKQQE/KbwXqtsDMkTbb0bj8m8JsA/edit">
-          </iframe>
-        </div>
+  <p style="margin:0; color: rgba(17,24,39,.72);">
+    Portfolio-safe documentation from my internship showing how I approached Excel automation.
+    All examples are anonymized and do not include client or confidential data.
+  </p>
 
-        <div class="hint">
-          If the arrows don’t appear, re-copy the embed code from Canva (Share → Embed).
-        </div>
+  <div class="btnRow" style="margin-top:12px;">
+    <a class="btn primary" href="docs/macros-finalized-notes.pdf" target="_blank" rel="noopener">
+      View: Finalized Macro Notes (PDF)
+    </a>
+    <a class="btn" href="docs/how-to-use-ai.pdf" target="_blank" rel="noopener">
+      View: How to Use AI (PDF)
+    </a>
+  </div>
 
-        <div class="tagrow">
-          <span class="tag">Canva</span>
-          <span class="tag">Presentation</span>
-          <span class="tag">Embedded</span>
-        </div>
-      </section>
+  <details style="margin-top:14px;">
+    <summary>My VBA Development Workflow (How I built dynamic macros)</summary>
+    <div class="hint" style="margin-top:10px; line-height:1.65;">
+      <strong>1) Start with the manual process</strong><br>
+      I first complete the task manually and note which steps repeat every time.<br><br>
+
+      <strong>2) Record a baseline macro</strong><br>
+      I record the macro to capture the “first draft” of the automation logic.<br><br>
+
+      <strong>3) Review the VBA in the editor</strong><br>
+      I check for hard-coded ranges, unnecessary <code>.Select</code> statements, and steps that won’t work if the dataset size changes.<br><br>
+
+      <strong>4) Make the code dynamic (AI-assisted, then verified)</strong><br>
+      I use ChatGPT as a coding assistant to help refactor the macro so it works across different export layouts and varying row counts (dynamic ranges, variables, and cleaner logic). I then review, edit, and test the code myself to ensure accuracy and reliability.<br><br>
+
+      <strong>5) Test and document</strong><br>
+      I test with multiple sample files and write clear step-by-step notes so others can use the tool consistently.
+    </div>
+  </details>
+
+  <div class="tagrow">
+    <span class="tag">Documentation</span>
+    <span class="tag">Excel</span>
+    <span class="tag">VBA</span>
+    <span class="tag">AI-Assisted Development</span>
+  </div>
+</section>
 
       <!-- QUICK SUMMARY -->
       <section class="bubble span4">
